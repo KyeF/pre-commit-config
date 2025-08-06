@@ -1,0 +1,79 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+    -   id: requirements-txt-fixer
+    -   id: detect-private-key
+    -   id: check-docstring-first
+    -   id: check-executables-have-shebangs
+    -   id: check-merge-conflict
+-   repo: https://github.com/psf/black  # black Python code formatter
+    rev: 25.1.0
+    hooks:
+    -   id: black
+        args: [--verbose, --target-version=py310, --line-length=88]
+-   repo: https://github.com/asottile/reorder_python_imports  # Prettier imports
+    rev: v3.14.0
+    hooks:
+    -   id: reorder-python-imports
+        args: [--py310-plus]
+-   repo: https://github.com/asottile/add-trailing-comma  # Trailing commas to calls and literals
+    rev: v3.1.0
+    hooks:
+    -   id: add-trailing-comma
+        args: [--py36-plus]
+-   repo: https://github.com/asottile/pyupgrade  # Upgrade syntax for newer versions of the language
+    rev: v3.19.1
+    hooks:
+    -   id: pyupgrade
+        args: [--py310-plus]
+-   repo: https://github.com/PyCQA/autoflake  # Removes unused imports
+    rev: v2.3.1
+    hooks:
+    -   id: autoflake
+        args: [--remove-all-unused-imports, --in-place, --remove-duplicate-keys, --remove-unused-variables]
+# -   repo: https://github.com/PyCQA/flake8  # flake8 linter
+#     rev: 7.2.0
+#     hooks:
+#     -   id: flake8
+#         args: [--max-line-length=88] #, --extend-ignore=E501]
+# -   repo: https://github.com/pre-commit/mirrors-mypy
+#     rev: 'v1.15.0'
+#     hooks:
+#     -   id: mypy
+        # args: [--ignore-missing-imports]
+-   repo: https://github.com/sqlfluff/sqlfluff # Prettier SQL, reports issues.
+    rev: 3.3.1
+    hooks:
+        - id: sqlfluff-lint
+        - id: sqlfluff-fix
+# -   repo: https://github.com/thlorenz/doctoc # add table of contents to markdown
+#     rev: v2.2.0
+#     hooks:
+#     -   id: doctoc
+-   repo: https://github.com/hukkin/mdformat # Prettier markdown
+    rev: 0.7.22
+    hooks:
+    -   id: mdformat
+        # Optionally add plugins
+        additional_dependencies:
+        - mdformat-gfm
+        - mdformat-black
+# -   repo: https://github.com/crate-ci/typos # Fix common typos
+#     rev: v1.31.0
+#     hooks:
+#     -   id: typos
+# -   repo: https://github.com/jendrikseipp/vulture # find unused code
+#     rev: 'v2.3'
+#     hooks:
+#     -   id: vulture
+-   repo: https://github.com/kynan/nbstripout
+    rev: 0.5.0
+    hooks:
+    -   id: nbstripout
